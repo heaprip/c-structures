@@ -1,0 +1,19 @@
+CompileFlags:
+  CompilationDatabase: build/
+  Add:
+    - -std=c17
+    - -Wall
+    - -Wextra
+    - -Wpedantic
+    - -Wconversion
+    - -Wshadow
+    - -Wstrict-prototypes
+    - -Wmissing-prototypes
+    - -Wold-style-definition
+    - -D_DEFAULT_SOURCE
+
+Diagnostics:
+  UnusedIncludes: Strict
+
+Index:
+  Background: Build

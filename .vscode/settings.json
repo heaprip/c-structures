@@ -1,0 +1,33 @@
+{
+    "cmake.buildDirectory": "${workspaceFolder}/build",
+    "cmake.configureOnOpen": true,
+    "cmake.debugConfig": {
+        "name": "Debug Current Target",
+        "type": "lldb-dap",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "args": [],
+        "stopAtEntry": false,
+        "cwd": "${workspaceFolder}",
+        "environment": [],
+        "externalConsole": false,
+        "MIMode": "lldb",
+        "miDebuggerPath": "/usr/bin/lldb",
+        "setupCommands": [
+            {
+                "description": "Enable pretty-printing",
+                "text": "-enable-pretty-printing",
+                "ignoreFailures": true
+            }
+        ]
+    },
+    "cmake.automaticReconfigure": false,
+    "cmake.configureArgs": [
+        "-GNinja",
+        "-DCMAKE_C_COMPILER_LAUNCHER=sccache"
+    ],
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    }
+}

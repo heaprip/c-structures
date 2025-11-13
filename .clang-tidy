@@ -1,0 +1,50 @@
+Checks: >
+  -bugprone-*,
+  -cert-*,
+  -clang-analyzer-*,
+  -concurrency-*,
+  -cppcoreguidelines-*,
+  -hicpp-*,
+  -misc-*,
+  -modernize-*,
+  -performance-*,
+  -portability-*,
+  -readability-*,
+
+  readability-misleading-indentation,
+  readability-inconsistent-declaration-parameter-name,
+  readability-isolate-declaration,
+  readability-magic-numbers,
+
+  modernize-use-trailing-return-type,
+  modernize-avoid-c-arrays,
+
+  cert-err33-c,
+  cert-msc30-c,
+  cert-msc32-c,
+
+  performance-for-range-copy,
+  performance-implicit-conversion-in-loop,
+  performance-inefficient-algorithm,
+  performance-inefficient-vector-operation,
+  performance-inefficient-string-concatenation,
+  performance-type-promotion-in-math-fn,
+  performance-unnecessary-copy-initialization,
+  performance-unnecessary-value-param,
+
+CheckOptions:
+  - key: readability-identifier-length.localVariableMinLength
+    value: '2'
+  - key: readability-identifier-global.minLength
+    value: '3'
+  - key: readability-magic-numbers.IgnoredIntegerValues
+    value: '0,1,2,3,4,8,16,32,64,128,256,1024'
+  - key: modernize-use-trailing-return-type.IgnoreMacros
+    value: 'true'
+  - key: readability-isolate-declaration.StatementMacros
+    value: 'TEST,ASSERT,EXPECT'
+
+FormatStyle: none
+
+WarningsAsErrors: '*'
+HeaderFilterRegex: '.*'

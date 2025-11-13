@@ -1,0 +1,19 @@
+Language: C
+BasedOnStyle: LLVM
+
+BreakBeforeBraces: Attach
+
+AlignConsecutiveAssignments: true
+AlignConsecutiveDeclarations: true
+
+AlignConsecutiveMacros: true
+
+UseTab: Never
+TabWidth: 2
+IndentWidth: 2
+
+ColumnLimit: 80
+AllowShortBlocksOnASingleLine: true
+AllowShortFunctionsOnASingleLine: true
+AllowShortIfStatementsOnASingleLine: true
+AllowShortLoopsOnASingleLine: true

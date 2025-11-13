@@ -24,7 +24,8 @@
     "cmake.automaticReconfigure": false,
     "cmake.configureArgs": [
         "-GNinja",
-        "-DCMAKE_C_COMPILER_LAUNCHER=sccache"
+        "-DCMAKE_C_COMPILER_LAUNCHER=sccache",
+        "-DCMAKE_TOOLCHAIN_FILE=.cmake/llvm-toolchain.cmake"
     ],
     "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd",
     "[yaml]": {

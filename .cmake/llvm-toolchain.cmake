@@ -1,0 +1,28 @@
+set(CMAKE_SYSTEM_NAME Linux)
+set(CMAKE_SYSTEM_PROCESSOR x86_64)
+
+set(CMAKE_C_COMPILER clang)
+set(CMAKE_CXX_COMPILER clang++)
+set(CMAKE_ASM_COMPILER clang)
+set(CMAKE_AR llvm-ar)
+set(CMAKE_NM llvm-nm)
+set(CMAKE_RANLIB llvm-ranlib)
+set(CMAKE_OBJDUMP llvm-objdump)
+set(CMAKE_READELF llvm-readelf)
+set(CMAKE_STRIP llvm-strip)
+set(CMAKE_LINKER lld)
+
+set(CMAKE_EXE_LINKER_FLAGS_INIT "${CMAKE_EXE_LINKER_FLAGS_INIT} -fuse-ld=lld")
+set(CMAKE_SHARED_LINKER_FLAGS_INIT "${CMAKE_SHARED_LINKER_FLAGS_INIT} -fuse-ld=lld")
+set(CMAKE_STATIC_LINKER_FLAGS_INIT "${CMAKE_STATIC_LINKER_FLAGS_INIT} -fuse-ld=lld")
+
+find_program(SCCACHE_PROGRAM sccache)
+if(SCCACHE_PROGRAM)
+    set(CMAKE_C_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}")
+    set(CMAKE_CXX_COMPILER_LAUNCHER "${SCCACHE_PROGRAM}")
+endif()
+
+message(STATUS "Using LLVM/Clang toolchain:")
+message(STATUS "  C compiler: ${CMAKE_C_COMPILER}")
+message(STATUS "  Linker:     ${CMAKE_LINKER}")
+message(STATUS "  Runtime:    glibc + compiler-rt")

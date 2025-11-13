@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <sys/errno.h>
 #include <sys/random.h>
 
 #include "structures/bplustree/int_int_bplustree.h"
@@ -18,10 +19,10 @@ unsigned int getrandom_uint(void) {
 }
 
 int main(void) {
-  struct intinttree tree;
+  intinttree tree;
   intinttree_init(&tree);
 
-  struct IntIntBPlusTree *objs[OBJECTS_SIZE];
+  IntIntBPlusTree *objs[OBJECTS_SIZE];
   for (int i = 0; i < OBJECTS_SIZE; ++i) {
     objs[i] = malloc(sizeof(*objs[i]));
     // super simple hash function
@@ -34,8 +35,8 @@ int main(void) {
   intinttree_iterate(&tree, printIntIntBPlusTree, NULL);
 
   // test find
-  int                     k = getrandom_uint() % OBJECTS_SIZE;
-  struct IntIntBPlusTree *r = intinttree_search(&tree, k);
+  int              k = getrandom_uint() % OBJECTS_SIZE;
+  IntIntBPlusTree *r = intinttree_search(&tree, k);
   if (r)
     printf("Found %d -> %d\n", k, r->value);
   else

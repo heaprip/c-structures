@@ -2,15 +2,54 @@ repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v6.0.0
     hooks:
-      - id: trailing-whitespace
+      - id: check-added-large-files
+        args: ['--maxkb=500']
       - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-yaml
+      - id: check-toml
+
   - repo: https://github.com/jumanjihouse/pre-commit-hooks
     rev: 3.0.0
     hooks:
       - id: require-ascii
         files: ^.*$
         types: [text]
+
   - repo: https://github.com/sirosen/texthooks
     rev: 0.7.1
     hooks:
       - id: fix-ligatures
+
+  - repo: https://github.com/pre-commit/mirrors-clang-format
+    rev: v21.1.5
+    hooks:
+    - id: clang-format
+      types: [c, c++]
+      files: \.(c|h|cc|cpp|cxx|hpp|hh|hxx)$
+      args: [
+        -style=file,
+        -i
+      ]
+      additional_dependencies: []
+
+  - repo: local
+    hooks:
+      - id: clang-format-check
+        name: check clang-format run
+        entry: >-
+          bash -c '
+            if git diff --exit-code --quiet; then
+              echo "code was formatted"
+            else
+              echo "error: code not formatted"
+              echo "run: pre-commit run clang-format --all-files"
+              git diff
+              exit 1
+            fi
+          '
+        language: system
+        pass_filenames: false
+        always_run: true
+        stages: [pre-commit]
+        require_serial: true

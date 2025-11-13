@@ -1,18 +1,17 @@
-#include "structures.h"
-#include "bplustree.h"
-#include<uv.h>
+#pragma once
 
-struct IntIntBPlusTree
-{
+#include "structures.h"
+#include "structures/bplustree/bplustree.h"
+
+typedef struct {
   int key;
   int value;
-};
+} IntIntBPlusTree;
 
-static inline int int_cmp(const int a, const int b)
-{
+static inline int int_cmp(const int a, const int b) {
   return (a > b) - (a < b);
 }
 #define CMP_INT(a, b) int_cmp((a), (b))
-DEFINE_BTREE(intinttree, struct IntIntBPlusTree, int, key, 4, CMP_INT)
+DEFINE_BTREE(intinttree, IntIntBPlusTree, int, key, 4, CMP_INT)
 
-STRUCTURES_EXTERN void printIntIntBPlusTree(struct IntIntBPlusTree *, void *);
+STRUCTURES_EXTERN void printIntIntBPlusTree(IntIntBPlusTree *, void *);

@@ -8,5 +8,5 @@ The project is configured to use `Visual Studio Code`, using Clangd for IDE C/C+
 All the examples were compiled on a Linux host running Arch Linux, which has the following necessary packages installed
 
 ```sh
-# pacman -S git clang cmake ninja lldb lldb-mi
+# pacman -S git llvm  clang cmake ninja lldb lldb-mi lld compiler-rt libunwind sccache
 ```

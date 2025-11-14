@@ -1,4 +1,3 @@
-#include <cmocka.h>
 #include <setjmp.h>
 #include <stdarg.h>
 #include <stddef.h>
@@ -6,6 +5,8 @@
 
 #include <sys/errno.h>
 #include <sys/random.h>
+
+#include <cmocka.h>
 
 #include "structures.h"
 #include "structures/bplustree/int_int_bplustree.h"
@@ -43,7 +44,7 @@ static void test_b_plus_tree_iterate(void **_) {
   intinttree_insert(&tree, &first_entry);
 
   ssize_t count = 0;
-  intinttree_iterate(&tree, intintree_get_entry_string, (void *)&count);
+  intinttree_iterate(&tree, intintree_get_entry_string, &count);
 
   assert_int_equal((int)count, 1);
 }

@@ -10,12 +10,16 @@
 #define OBJECTS_SIZE 5
 
 unsigned int getrandom_uint(void) {
-  static unsigned int buflen;
+  unsigned int result;
+  ssize_t ret;
 
-  getrandom(&buflen, sizeof(unsigned int), GRND_RANDOM);
-  if (errno != 0) fprintf(stderr, "getrandom error!");
+  ret = getrandom(&result, sizeof(result), 0);
+  if (ret != sizeof(result)) {
+    fprintf(stderr, "getrandom error: returned %zd, errno = %d\n", ret, errno);
+    return 0;
+  }
 
-  return (unsigned int)buflen;
+  return result;
 }
 
 int main(void) {
